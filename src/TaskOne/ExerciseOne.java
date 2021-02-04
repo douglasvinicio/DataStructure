@@ -3,7 +3,7 @@ package TaskOne;
 import java.util.Random;
 import java.util.Scanner;
 
-public class ConsoleAppOne {
+public class ExerciseOne {
 
     static Scanner input = new Scanner(System.in);
     int counter = 0;
