@@ -32,31 +32,31 @@ public class ExerciseTwo {
 
             System.out.printf("The 2D array has %d rows and %d columns.\nThose are the values inside the array: \n", rowSize,columnSize);
 
-            for (int i = 0; i < twoDimArray.length; i++){
-                for (int j = 0; j < twoDimArray[i].length; j++){
-                    twoDimArray[i][j] = rand.ints(-99, 99).findFirst().getAsInt();
-                    System.out.print(twoDimArray[i][j] + " ");
+            for (int row = 0; row < twoDimArray.length; row++){
+                for (int column = 0; column < twoDimArray[row].length; column++){
+                    twoDimArray[row][column] = rand.ints(-99, 99).findFirst().getAsInt();
+                    System.out.printf("%s%4d", column==0 ? "" :  ",",twoDimArray[row][column]);
                 }
                 System.out.println();
             }
 
             // 1 - Sum of all numbers in the array
             int totalSum = 0;
-            for (int i = 0; i < twoDimArray.length; i++){
-                for (int j = 0; j < twoDimArray[i].length; j++){
-                    totalSum += twoDimArray[i][j];
+            for (int row = 0; row < twoDimArray.length; row++){
+                for (int column = 0; column < twoDimArray[row].length; column++){
+                    totalSum += twoDimArray[row][column];
                 }
             }
-            System.out.println("The sum of all the numbers in the array is " + totalSum);
+            System.out.println("The sum of all the numbers in the array is => " + totalSum);
 
             // 2 - Sum of each row of the array
             System.out.println("2 - Sum of each row of the array");
             int[] eachRowTotal = new int[rowSize];
-            for (int i = 0; i < twoDimArray.length; i++){
-                for (int j = 0; j < twoDimArray[i].length; j++){
-                    eachRowTotal[i] += twoDimArray[i][j];
+            for (int row = 0; row < twoDimArray.length; row++){
+                for (int column = 0; column < twoDimArray[row].length; column++){
+                    eachRowTotal[row] += twoDimArray[row][column];
                 }
-                System.out.print(eachRowTotal[i] +  " ");
+                System.out.printf("The sum of row %d is : %d\n" , row, eachRowTotal[row]);
             }
 
             // 3 - Sum of each of the column of the array
@@ -68,14 +68,14 @@ public class ExerciseTwo {
                 for (int j = 0; j < twoDimArray.length; j++){
                     eachColumnTotal[i] += twoDimArray[j][i];
                 }
-                System.out.print(eachColumnTotal[i] + " ");
+                System.out.printf("The sum of column %d is : %d\n" , i, eachColumnTotal[i]);
             }
             System.out.println();
 
             //4) Standard deviation of all numbers in the array
             // First find the mean / average
-            double[] numArray = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            double mean = totalSum / (rowSize + columnSize);
+            // this formula DOES NOT work with Jagged Array
+            double mean = totalSum / (rowSize * columnSize);
             System.out.println("The average is " + mean);
 
             double standardDeviation = 0.0;
@@ -87,16 +87,15 @@ public class ExerciseTwo {
                 }
             }
 
-            standardDeviation = Math.sqrt(standardDeviation/(rowSize + columnSize));
+            standardDeviation = Math.sqrt(standardDeviation/(rowSize * columnSize));
 
             System.out.println("The standard deviation is " + standardDeviation);
 
-
             //5) Find pairs of numbers in the array whose sum is a prime number and display those pairs and their sum.
             //(assume that negative number is not a prime number)
-
-
-        }catch (IllegalArgumentException exc){
+            findPrimeNumbers(twoDimArray);
+        }
+        catch (IllegalArgumentException exc){
             System.out.println(exc.getMessage());
         }
     }
@@ -110,18 +109,23 @@ public class ExerciseTwo {
         return true;
     }
 
-    public static int numPairsWithPrimeSum(int[][] arr, int n)
-    {
-//        int count = 0;
-//        for (int i = 0; i < n; i++) {
-//            for (int j = i + 1; j < n; j++) {
-//                int sum = arr[i][j] + arr[j][i];
-//                if (isPrime(sum)) {
-//                    count++;
-//                }
-//            }
-//        }
-        return n;
+    public static void findPrimeNumbers(int[][] array){
+        for (int row = 0; row < array.length; row++){
+            for (int col = 0; col < array[row].length; col++ ){
+
+                for (int row2 = row; row2 < array.length; row2++){
+                    for (int col2 = col; col2 < array[row2].length; col2++){
+                        if (row2 == row && col2 <= col){
+                            continue;
+                        }
+                        int val = array[row][col] + array[row2][col2];
+                        if (isPrime(val)){
+                            System.out.printf("Prime sum %d of [%d,%d] + [%d,%d]\n" ,val,row,col,row2,col2);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
