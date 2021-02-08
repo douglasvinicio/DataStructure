@@ -2,28 +2,106 @@ package Tasks;
 
 public class CustomArrayOfInts {
 
+    private static int [] data = new int[1];
+
+    static int items = 0;
+
     public static void main(String[] args) {
+
+        //Testing methods
+        System.out.println(size());
+        int x = 1;
+        add(x++);
+        add(x++);
+        add(x++);
+        add(x++);
+        add(x++);
+        add(x++);
+        add(x++);
+
+        deleteByIndex(4);
+
+        for (int i = 0; i < data.length; i++){
+            System.out.print(data[i]);
+        }
+        System.out.println();
+
+        System.out.println(deleteByValue(9));
+
+        System.out.println();
+        for (int i = 0; i < data.length; i++){
+            System.out.print(data[i]);
+        }
+
+
+
 
     }
 
-//    private int [] data = new int[1]; // only grows by doubling size, never shrinks
-//    private int size = 0; // how many items do you really have
-//
-//    public int size() { return size; }
-//    public void add(int value) { ... }
-//    public void deleteByIndex(int index) { ... }
-//    public boolean deleteByValue(int value) { ... } // delete first value matching, true if value found, false otherwise
-//    public void insertValueAtIndex(int value, int index) { ... }
-//    public void clear() { size = 0; }
-//    public int get(int index) { ... } // may throw IndexOutOfBoundsException
-//    public int[] getSlice(int startIdx, int length) { ... } // may throw IndexOutOfBoundsException
-//
-//    @Override
-//    public String toString() {  } // returns String similar to: [3, 5, 6, -23]
-//}
+    // Gets array size
+    public static int size() {
+        int size = data.length;
+        return size;
+    }
+
+    // Add int to array, creates a new one double of the size if out of bounds
+    public static void add(int value) {
+        if(data.length == items ){
+            int[] newData = new int[data.length * 2];
+            for (int i = 0; i < data.length; i++){
+                newData[i] = data[i];
+            }
+            data = newData;
+        }
+        data[items] = value;
+        items++;
+    }
+
+    public static void deleteByIndex(int index) {
+        int[] newData = new int[data.length - 1];
+        for (int i = 0, j = 0; i < newData.length; i++){
+            if (i == index)
+                continue;
+            newData[j++] = data[i];
+        }
+        data = newData;
+    }
+
+    // delete first value matching, true if value found, false otherwise
+    public static boolean deleteByValue(int value) {
+        for (int i = 0, j = 0; i < data.length; i++){
+            if (data[i] == value){
+                deleteByIndex(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void insertValueAtIndex(int value, int index) {
+
+    }
+
+    // may throw IndexOutOfBoundsException
+    public static int get(int index) {
+        return 0;
+    }
+
+    // may throw IndexOutOfBoundsException
+    public int[] getSlice(int startIdx, int length) {
+        return data;
+    }
+
+    public static void clear() {
+        items = 0;
+    }
+
+    @Override
+    public String toString() {
+        // returns String similar to: [3, 5, 6, -23]
+        return "Array";
+    }
 }
-//
-//    Implement the above class.
 //        You are NOT allowed to use any advanced data structures like ArrayLists, HashMaps, Arrays class, System.arraycopy(), etc.
 //
 //        You are NOT allowed to add or remove any methods or fields in the above code.
