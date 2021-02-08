@@ -1,21 +1,26 @@
 package Recursion;
 
-public class changePi {
+public class ChangePi {
 
     public static void main(String[] args) {
 
-        System.out.println(changePi("xpii"));
+        String str = "xpiijksgjpidkgjpidspipipis";
+
+        System.out.println(changePi(str));
+
+        System.out.println(str.charAt(0));
+        System.out.println(str.substring(1));
     }
 
     public static String changePi(String str){
-        // Exit condition
-        if (str.length() == 1){
+        if (str.length() <= 1)
             return str;
-        }
+
         if (str.substring(0,2).equals("pi")){
-            return "3.14" + changePi(str.substring(4));
+            return "3.14" + changePi(str.substring(2));
         }
-        return changePi(str.substring(1));
+
+        return str.charAt(0) + changePi(str.substring(1));
     }
 
 }

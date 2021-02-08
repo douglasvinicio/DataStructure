@@ -20,6 +20,21 @@ public class Exercise4 {
         return countOfHi(str.substring((1)));
     }
 
+//    public static void main(String[] args) {
+//        String testString = "hi---ok---hi-xxx-hi-hiabc-hi";
+//        RecCheckHi(testString,0);
+//
+//    }
+//    // another method to check how many "hi"s
+//    private static void RecCheckHi(String input, int number){
+//        if(input.contains("hi")){
+//            RecCheckHi(input.replaceFirst("hi",""),number+1);
+//        }
+//    else{
+//            System.out.println(number);
+//        }
+//    }
+
     // My essay to solve this =(
 //    public static int countHi(String str){
 //        int counter = 0;

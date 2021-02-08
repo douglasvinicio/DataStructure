@@ -6,8 +6,8 @@ public class Exercise3 {
 
     public static void main(String[] args) {
 
-        int x = 4;
-        int y = 5;
+        int x = 9;
+        int y = 9;
 
         System.out.println(pow(x, y));
     }
