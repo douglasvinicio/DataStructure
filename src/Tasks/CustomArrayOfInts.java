@@ -18,6 +18,11 @@ public class CustomArrayOfInts {
         add(x++);
         add(x++);
         add(x++);
+        add(x++);
+        add(x++);
+
+
+
 
         deleteByIndex(4);
 
@@ -28,13 +33,18 @@ public class CustomArrayOfInts {
 
         System.out.println(deleteByValue(9));
 
+
+
+        insertValueAtIndex(10,0);
+
         System.out.println();
+
         for (int i = 0; i < data.length; i++){
-            System.out.print(data[i]);
+            System.out.print(data[i] + " ");
         }
 
-
-
+        System.out.println();
+        System.out.println(getSlice(0,3).toString());
 
     }
 
@@ -69,7 +79,7 @@ public class CustomArrayOfInts {
 
     // delete first value matching, true if value found, false otherwise
     public static boolean deleteByValue(int value) {
-        for (int i = 0, j = 0; i < data.length; i++){
+        for (int i = 0; i < data.length; i++){
             if (data[i] == value){
                 deleteByIndex(i);
                 return true;
@@ -78,18 +88,43 @@ public class CustomArrayOfInts {
         return false;
     }
 
-    public void insertValueAtIndex(int value, int index) {
+    public static void insertValueAtIndex(int value, int index) {
 
+        if (index > data.length){
+            throw new IndexOutOfBoundsException("The array does not have this index.");
+        }
+        else {
+            int[] newData = new int[data.length];
+
+            for (int i = 0; i < data.length; i++) {
+                if (i == index)
+                    newData[i] = value;
+                else
+                    newData[i] = data[i];
+            }
+            data = newData;
+        }
     }
 
     // may throw IndexOutOfBoundsException
     public static int get(int index) {
-        return 0;
+        int value = 0;
+        // Throws exception if index is not valid
+        if (index > data.length)
+            throw new IndexOutOfBoundsException();
+
+        value = data[index];
+        return value;
     }
 
     // may throw IndexOutOfBoundsException
-    public int[] getSlice(int startIdx, int length) {
-        return data;
+    public static int[] getSlice(int startIdx, int length) {
+        int[] sliceArray = new int[startIdx + length];
+
+        for (int i = startIdx; i < length; i++){
+            sliceArray[i] = data[i];
+        }
+        return sliceArray;
     }
 
     public static void clear() {
@@ -99,7 +134,16 @@ public class CustomArrayOfInts {
     @Override
     public String toString() {
         // returns String similar to: [3, 5, 6, -23]
-        return "Array";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append('[');
+        for (int i = 0; i < data.length; i++) {
+            sb.append(data[i]);
+            if (i == data.length - 1)
+                return sb.append(']').toString();
+            sb.append(", ");
+        }
+        return sb.toString();
     }
 }
 //        You are NOT allowed to use any advanced data structures like ArrayLists, HashMaps, Arrays class, System.arraycopy(), etc.
