@@ -7,8 +7,7 @@ public class CustomArray {
     int items = 0;
     // Gets array size
     public int size() {
-        int size = data.length;
-        return size;
+        return items;
     }
 
     // Add int to array, creates a new one double of the size if out of bounds
@@ -26,7 +25,7 @@ public class CustomArray {
 
     public void deleteByIndex(int index) {
         int[] newData = new int[data.length - 1];
-        for (int i = 0, j = 0; i < newData.length; i++){
+        for (int i = 0, j = 0; i < data.length; i++){
             if (i == index)
                 continue;
             newData[j++] = data[i];
@@ -78,8 +77,8 @@ public class CustomArray {
     public int[] getSlice(int startIdx, int length) {
         int[] sliceArray = new int[length];
 
-        for (int i = startIdx; i < length; i++){
-            sliceArray[i] = data[i];
+        for (int i = 0; i < length; i++){
+            sliceArray[i] = data[i + startIdx];
         }
         return sliceArray;
     }

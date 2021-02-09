@@ -13,8 +13,10 @@ public class CustomArrayOfInts {
         array.add(x++);
         array.add(x++);
         array.add(x++);
+        array.add(x++);
+        array.add(x++);
 
-        array.deleteByIndex(4);
+        array.deleteByIndex(0);
 
         System.out.println(array);
 
@@ -24,7 +26,7 @@ public class CustomArrayOfInts {
 
         System.out.println(array);
 
-        int[] slice = array.getSlice(0,2);
+        int[] slice = array.getSlice(1,3);
         System.out.println(java.util.Arrays.toString(slice));
 
     }
