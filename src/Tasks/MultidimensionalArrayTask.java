@@ -1,6 +1,6 @@
-package Recursion;
+package Tasks;
 
-public class Exercise6 {
+public class MultidimensionalArrayTask {
 
     public static void main(String[] args) {
 

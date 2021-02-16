@@ -1,6 +1,7 @@
 package Arrays;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 class Person{
 
@@ -36,6 +37,15 @@ class Person{
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                Objects.equals(name, person.name);
+    }
 }
 public class ArrayListTest {
 
@@ -49,6 +59,13 @@ public class ArrayListTest {
         for (Person p : personArray){
             System.out.println(p);
         }
+
+        personArray.size();
+
+        Person searchValue = new Person(18, "Joan");
+        System.out.println(personArray.contains(searchValue));
+
+
     }
 
 
